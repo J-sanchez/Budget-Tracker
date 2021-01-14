@@ -1,7 +1,7 @@
 let transactions = [];
 let myChart;
 
-fetch("/api/transaction")
+fetch("/api/Transaction")
   .then(response => {
     return response.json();
   })
@@ -105,7 +105,7 @@ function sendTransaction(isAdding) {
   }
 
   // add to beginning of current array of data
-  transactions.unshift(transaction);
+  transactions.push(transaction);
 
   // re-run logic to populate ui with new record
   populateChart();
