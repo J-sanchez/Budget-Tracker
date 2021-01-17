@@ -3,7 +3,7 @@ const FILES_TO_CACHE = [
     "/",
     "./index.html",
     "./css/styles.css",
-    "./js/index.js",
+    //"./js/index.js",
     "./js/idb.js",
     /*"./icons/icon-72x72.png",
     "./icons/icon-96x96.png",
@@ -39,8 +39,8 @@ self.addEventListener('fetch', function (event) {
 // Cache the resources
 self.addEventListener('install', function (event) {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(function (cache) {
-            console.log('installing cache : ' + CACHE_NAME)
+        caches.open(event.request).then(function (cache) {
+            console.log('installing cache : ' + event.request)
             return cache.addAll(FILES_TO_CACHE)
         })
     )
@@ -54,7 +54,7 @@ self.addEventListener('activate', function (event) {
                 return key.indexOf(APP_PREFIX);
             });
             // add current cache name to keeplist
-            cacheKeeplist.push(CACHE_NAME);
+            cacheKeeplist.push(event.request);
 
             return Promise.all(
                 keyList.map(function (key, i) {

@@ -42,7 +42,7 @@ tr:nth-child(even) {
   width: 100%;
 }
 
-.transactions {
+.transaction {
   text-align: left;
   max-height: 300px;
   overflow: auto;
